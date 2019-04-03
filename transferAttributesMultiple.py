@@ -1,5 +1,4 @@
 import maya.cmds as mc
-test
 
 Values = {
   
