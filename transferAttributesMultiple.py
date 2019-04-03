@@ -7,27 +7,19 @@
 import sys
 import maya.cmds as mc
 
-Values = dict(valueA = 1, valueB = 1, option1 = False, option2 = False, TransferPosition = 0)
+Values = dict(valueA = 1, valueB = 1, VertexPosition = 0, option2 = False, TransferPosition = 0, VertexPositionB = None)
 
 
 def printCommand(*args):
 
     print Values
 
-def changeTo1A(*args):
+def VP(self):
 
-
-    Values["valueA"] = 15
     Values["TransferPosition"] = 1
-    visibility = mc.button(Values["option1"], query=True, enable=True)
- 
-    if visibility:
-        visibility = not visibility
- 
-    mc.button(Values["option1"], edit=True, enable= visibility)
- 
-    print "value A has changed to 15"
- 
+    mc.button(Values["VertexPositionB"], edit=True, enable = False)
+    print "value A has changed to 1"
+
  
 def changeTo1B(*args):
 
@@ -42,7 +34,8 @@ def changeTo1B(*args):
  
     print "value B has changed to 20"
  
- 
+
+
 def menuWindow():
 
  
@@ -51,20 +44,19 @@ def menuWindow():
     menu = mc.window("menuGL")
     mc.columnLayout()
 #    mc.paneLayout(configuration="quad")
-    Values["option1"] = mc.button(label="Option01", c=changeTo1A, enable=True)
+    Values["VertexPositionB"] = mc.button(label="VertexPosition", c=VP, enable=True)
     Values["option2"] = mc.button(label="Option02", c=changeTo1B, enable=True)
     mc.button(label="Print", command=printCommand)
     mc.button(label="RESET", command=reset)        
     mc.button(label="TransferAttributes", command=tas)
     mc.showWindow(menu)
  
- 
 def reset(*args):
 
     Values["valueA"] = 0
     Values["valueB"] = 0  
 
-    mc.button(Values["option1"], edit=True, enable= True)
+    mc.button(Values["VertexPosition"], edit=True, enable= True)
     mc.button(Values["option2"], edit=True, enable= True)
  
     print "values and buttons have been reset"
