@@ -6,6 +6,7 @@
 
 import sys
 import maya.cmds as mc
+#setting up a dictionary
 
 Values = dict(TransferPosition = 0, VertexPositionB = None, TransferUVs = 0, TransferUVB = None)
 
